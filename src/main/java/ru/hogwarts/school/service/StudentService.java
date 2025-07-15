@@ -3,42 +3,18 @@ package ru.hogwarts.school.service;
 import org.springframework.stereotype.Service;
 import ru.hogwarts.school.model.Student;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 @Service
-public class StudentService {
-    private static Long studentId = 0L;
-    private final Map<Long, Student> students=new HashMap<>();
+public interface StudentService {
+    Student addStudent(Student student);
 
-    public Student addStudent(Student student){
-        student.setId(studentId++);
-        return students.put(student.getId(),student);
-    }
+    Student findStudentById(Long studentId);
 
-    public Student findStudentById(Long studentId){
-        return students.get(studentId);
-    }
+    Student editStudent(Student student);
 
-    public Student removeStudentById(Long studentId){
-        return students.remove(studentId);
-    }
+    void removeStudentById(Long studentId);
 
+    List<Student> findAllStudentsByAge(Integer age);
 
-    public Student editStudent(Long studentId, Student student){
-        student.setId(studentId);
-        return students.put(studentId,student);
-    }
-
-    public List<Student> findAllStudentsByAge (int age){
-        return students.values().stream()
-                .filter(student -> student.getAge()==age)
-                .toList();
-    }
-
-    public List<Student> findAllStudents(){
-        return students.values().stream()
-                .toList();
-
-    }
+    List<Student> findAllStudents();
 }

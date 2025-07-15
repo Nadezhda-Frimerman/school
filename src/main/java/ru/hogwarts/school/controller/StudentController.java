@@ -1,6 +1,8 @@
 package ru.hogwarts.school.controller;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
 import ru.hogwarts.school.model.Student;
 import ru.hogwarts.school.service.StudentService;
 
@@ -9,39 +11,41 @@ import java.util.List;
 @RestController
 @RequestMapping("/student")
 public class StudentController {
-    private StudentService studentService;
+    private final StudentService studentService;
 
     public StudentController(StudentService studentService) {
         this.studentService = studentService;
     }
 
     @GetMapping("/{id}/find")
-    public Student findStudentById(@PathVariable("id") Long studentId) {
-        return studentService.findStudentById(studentId);
+    public ResponseEntity<Student> findStudentById(@RequestParam ("id") Long studentId) {
+        return ResponseEntity.ok(studentService.findStudentById(studentId));
     }
 
     @GetMapping("/find/all")
     public List<Student> findAllStudents() {
         return studentService.findAllStudents();
     }
+
     @GetMapping("/find/allByAge")
-    public List<Student> findAllStudentsByAge(@RequestParam("age") int age) {
-        return studentService.findAllStudentsByAge(age);
+    public ResponseEntity<List<Student>> findAllStudentsByAge(@RequestParam ("age") Integer age) {
+        return ResponseEntity.ok(studentService.findAllStudentsByAge(age));
     }
 
     @PostMapping("/add")
-    public Student addStudent(@RequestBody Student student) {
-        return studentService.addStudent(student);
+    public ResponseEntity<Student> addStudent(@RequestBody Student student) {
+        return ResponseEntity.ok(studentService.addStudent(student));
     }
 
     @PutMapping("/{id}/update")
-    public Student updateStudent(@PathVariable("id") Long studentId,
-                                 @RequestBody Student student) {
-        return studentService.editStudent(studentId, student);
+    public ResponseEntity<Student> updateStudent(@RequestBody Student student) {
+        return ResponseEntity.ok(studentService.editStudent(student));
     }
+
     @DeleteMapping("/{id}/remove")
-    public Student removeStudentById(@PathVariable("id") Long studentId) {
-        return studentService.removeStudentById(studentId);
+    public ResponseEntity<Student> removeStudentById(@RequestParam ("id") Long studentId) {
+        studentService.removeStudentById(studentId);
+        return ResponseEntity.ok().build();
     }
 
 }
