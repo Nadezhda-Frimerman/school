@@ -3,6 +3,7 @@ package ru.hogwarts.school.model;
 import jakarta.persistence.*;
 
 import java.util.Objects;
+
 @Entity
 public class Faculty {
     @Id
@@ -12,7 +13,8 @@ public class Faculty {
     private String color;
 
 
-    public Faculty(){}
+    public Faculty() {
+    }
 
     public Long getId() {
         return id;

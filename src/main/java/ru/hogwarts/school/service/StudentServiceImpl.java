@@ -16,23 +16,19 @@ public class StudentServiceImpl implements StudentService {
     }
 
     public Student addStudent(Student student) {
-
-        System.out.println(student);
         return studentRepository.save(student);
     }
 
     public Student findStudentById(Long studentId) {
-        CheckStudentExist(studentId);
-        return studentRepository.findById(studentId).orElseThrow();
+        return studentRepository.findById(studentId).orElseThrow(() -> new ObjectNotFoundException("Факультет с id " + studentId + " не найден"));
     }
 
     public Student editStudent(Student student) {
-        CheckStudentExist(student.getId());
+        studentRepository.findById(student.getId()).orElseThrow(() -> new ObjectNotFoundException("Факультет с id " + student.getId() + " не найден"));
         return studentRepository.save(student);
     }
 
     public void removeStudentById(Long studentId) {
-        CheckStudentExist(studentId);
         studentRepository.deleteById(studentId);
     }
 
@@ -45,11 +41,7 @@ public class StudentServiceImpl implements StudentService {
 
     }
 
-    private void CheckStudentExist(Long studentID) {
-        if (studentRepository.getById(studentID)==null) {
-            throw new ObjectNotFoundException("Студент с таким Id не найден");
-        }
-    }
+
 }
 
 

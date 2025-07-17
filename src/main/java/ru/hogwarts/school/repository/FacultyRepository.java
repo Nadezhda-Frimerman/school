@@ -5,8 +5,9 @@ import org.springframework.stereotype.Repository;
 import ru.hogwarts.school.model.Faculty;
 
 import java.util.List;
+
 @Repository
-public interface FacultyRepository extends JpaRepository<Faculty,Long> {
+public interface FacultyRepository extends JpaRepository<Faculty, Long> {
     List<Faculty> findByColor(String color);
 
 }

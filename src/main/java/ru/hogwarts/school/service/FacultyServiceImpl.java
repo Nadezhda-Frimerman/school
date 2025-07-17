@@ -24,16 +24,15 @@ public class FacultyServiceImpl implements FacultyService {
     }
 
     public Faculty findFacultyById(Long facultyId) {
-
-        return facultyRepository.findById(facultyId).orElseThrow();
+        return facultyRepository.findById(facultyId).orElseThrow(() -> new ObjectNotFoundException("Факультет с id " + facultyId + " не найден"));
     }
 
-    public void removeFacultyById(Long facultyId) { 
-                facultyRepository.deleteById(facultyId);
+    public void removeFacultyById(Long facultyId) {
+        facultyRepository.deleteById(facultyId);
     }
 
     public Faculty editFaculty(Faculty faculty) {
-
+        facultyRepository.findById(faculty.getId()).orElseThrow(() -> new ObjectNotFoundException("Факультет с id " + faculty.getId() + " не найден"));
         return facultyRepository.save(faculty);
     }
 
@@ -41,8 +40,8 @@ public class FacultyServiceImpl implements FacultyService {
         return facultyRepository.findByColor(color);
     }
 
-    public List<Faculty> findAllFaculties(String color) {
-        return facultyRepository.findByColor(color);
+    public List<Faculty> findAllFaculties() {
+        return facultyRepository.findAll();
     }
 
 

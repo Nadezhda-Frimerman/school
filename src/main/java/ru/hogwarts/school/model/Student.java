@@ -3,6 +3,7 @@ package ru.hogwarts.school.model;
 import jakarta.persistence.*;
 
 import java.util.Objects;
+
 @Entity
 public class Student {
     @Id
@@ -17,8 +18,10 @@ public class Student {
         this.name = name;
         this.age = age;
     }
+
     public Student() {
     }
+
     public Long getId() {
         return id;
     }
