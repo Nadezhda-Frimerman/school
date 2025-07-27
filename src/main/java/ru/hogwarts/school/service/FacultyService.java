@@ -14,7 +14,8 @@ public interface FacultyService {
 
     Faculty editFaculty(Faculty faculty);
 
-    List<Faculty> findAllFacultiesByColor(String color);
+    Faculty findFacultyByColor(String color);
 
     List<Faculty> findAllFaculties();
+    Faculty findFacultyByName (String name);
 }

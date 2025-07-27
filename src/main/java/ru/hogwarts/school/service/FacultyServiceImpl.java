@@ -36,7 +36,7 @@ public class FacultyServiceImpl implements FacultyService {
         return facultyRepository.save(faculty);
     }
 
-    public List<Faculty> findAllFacultiesByColor(String color) {
+    public Faculty findFacultyByColor(String color) {
         return facultyRepository.findByColor(color);
     }
 
@@ -44,5 +44,8 @@ public class FacultyServiceImpl implements FacultyService {
         return facultyRepository.findAll();
     }
 
+    public Faculty findFacultyByName (String name){
+        return facultyRepository.findByName(name);
+    }
 
 }

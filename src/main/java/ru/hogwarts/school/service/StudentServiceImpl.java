@@ -1,5 +1,6 @@
 package ru.hogwarts.school.service;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.stereotype.Service;
 import ru.hogwarts.school.exception.ObjectNotFoundException;
 import ru.hogwarts.school.model.Student;
@@ -34,6 +35,10 @@ public class StudentServiceImpl implements StudentService {
 
     public List<Student> findAllStudentsByAge(Integer age) {
         return studentRepository.findByAge(age);
+    }
+
+    public List<Student> findStudentsByAgeBetween(Integer min, Integer max){
+        return studentRepository.findByAgeBetween(min, max);
     }
 
     public List<Student> findAllStudents() {
