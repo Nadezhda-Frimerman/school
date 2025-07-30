@@ -1,6 +1,5 @@
 package ru.hogwarts.school.service;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.stereotype.Service;
 import ru.hogwarts.school.exception.ObjectNotFoundException;
 import ru.hogwarts.school.model.Student;
@@ -25,7 +24,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     public Student editStudent(Student student) {
-        studentRepository.findById(student.getId()).orElseThrow(() -> new ObjectNotFoundException("Факультет с id " + student.getId() + " не найден"));
+        studentRepository.findById(student.getStudentId()).orElseThrow(() -> new ObjectNotFoundException("Факультет с id " + student.getStudentId() + " не найден"));
         return studentRepository.save(student);
     }
 

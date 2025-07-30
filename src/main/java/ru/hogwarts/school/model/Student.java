@@ -1,6 +1,5 @@
 package ru.hogwarts.school.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 import java.util.Objects;
@@ -9,26 +8,30 @@ import java.util.Objects;
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    @Column
+    private Long studentId;
     private String name;
-    @Column
-    private Integer age;
 
-    public Student(String name, Integer age) {
+    private Integer age;
+    @ManyToOne
+    @JoinColumn(name="faculty_id")
+    private Faculty faculty;
+    
+
+    public Student(String name, Integer age, Long facultyId) {
         this.name = name;
         this.age = age;
+        this.faculty = faculty;
     }
 
-    public Student() {
+    public Student(){}
+
+
+    public Long getStudentId() {
+        return studentId;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public void setStudentId(Long studentId) {
+        this.studentId = studentId;
     }
 
     public String getName() {
@@ -53,19 +56,19 @@ public class Student {
         if (o == null || getClass() != o.getClass()) return false;
         Student student = (Student) o;
         return Objects.equals(getAge(), student.getAge())
-                && Objects.equals(getId(), student.getId())
+                && Objects.equals(getStudentId(), student.getStudentId())
                 && Objects.equals(getName(), student.getName());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getName(), getAge());
+        return Objects.hash(getStudentId(), getName(), getAge());
     }
 
     @Override
     public String toString() {
         return "Student{" +
-                "id=" + id +
+                "id=" + studentId +
                 ", name='" + name + '\'' +
                 ", age=" + age +
                 '}';
