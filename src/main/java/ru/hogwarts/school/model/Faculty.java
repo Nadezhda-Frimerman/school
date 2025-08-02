@@ -9,10 +9,12 @@ import java.util.Objects;
 @Entity
 public class Faculty {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long facultyId;
     private String name;
     private String color;
+
+
     @OneToMany(mappedBy = "faculty")
     private List<Student> students;
 
@@ -42,6 +44,7 @@ public class Faculty {
     public void setColor(String color) {
         this.color = color;
     }
+
 
     @Override
     public boolean equals(Object o) {

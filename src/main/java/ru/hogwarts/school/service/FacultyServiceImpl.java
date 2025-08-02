@@ -3,6 +3,7 @@ package ru.hogwarts.school.service;
 import org.springframework.stereotype.Service;
 import ru.hogwarts.school.exception.ObjectNotFoundException;
 import ru.hogwarts.school.model.Faculty;
+import ru.hogwarts.school.model.Student;
 import ru.hogwarts.school.repository.FacultyRepository;
 
 import java.util.List;
@@ -44,5 +45,7 @@ public class FacultyServiceImpl implements FacultyService {
     public Faculty findFacultyByName (String name){
         return facultyRepository.findByNameIgnoreCase(name);
     }
-
+    public List<Student> findAllStudentsByFacultyId(Long facultyId){
+        return facultyRepository.findAllStudentsByFacultyId(facultyId);
+    }
 }

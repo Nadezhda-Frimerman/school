@@ -4,6 +4,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.hogwarts.school.exception.ObjectNotFoundException;
 import ru.hogwarts.school.model.Faculty;
+import ru.hogwarts.school.model.Student;
 import ru.hogwarts.school.service.FacultyService;
 
 import java.util.List;
@@ -19,7 +20,11 @@ public class FacultyController {
 
     @GetMapping("/findAll")
     public List<Faculty> findAllFaculties() {
-        return facultyService.findAllFaculties();
+                return facultyService.findAllFaculties();
+    }
+    @GetMapping("/{id}/findAllStudentsByFacultyId")
+    public List<Student> findAllStudentsByFacultyId(@PathVariable("id") Long facultyId){
+        return facultyService.findAllStudentsByFacultyId(facultyId);
     }
 
     @PostMapping("/add")
@@ -51,4 +56,5 @@ public class FacultyController {
         }
         throw new ObjectNotFoundException("Факультет не найден");
     }
+
 }

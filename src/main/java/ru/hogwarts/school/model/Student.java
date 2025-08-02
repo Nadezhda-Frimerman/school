@@ -7,7 +7,7 @@ import java.util.Objects;
 @Entity
 public class Student {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long studentId;
     private String name;
 
@@ -15,12 +15,20 @@ public class Student {
     @ManyToOne
     @JoinColumn(name="faculty_id")
     private Faculty faculty;
-    
+
+
+    public Faculty getFaculty() {
+        return faculty;
+    }
+
+    public void setFaculty(Faculty faculty) {
+        this.faculty = faculty;
+    }
 
     public Student(String name, Integer age, Long facultyId) {
         this.name = name;
         this.age = age;
-        this.faculty = faculty;
+
     }
 
     public Student(){}
