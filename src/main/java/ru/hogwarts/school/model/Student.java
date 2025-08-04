@@ -8,7 +8,7 @@ import java.util.Objects;
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long studentId;
+    private Long id;
     private String name;
 
     private Integer age;
@@ -25,7 +25,7 @@ public class Student {
         this.faculty = faculty;
     }
 
-    public Student(String name, Integer age, Long facultyId) {
+    public Student(String name, Integer age, Long id) {
         this.name = name;
         this.age = age;
 
@@ -34,12 +34,12 @@ public class Student {
     public Student(){}
 
 
-    public Long getStudentId() {
-        return studentId;
+    public Long getId() {
+        return id;
     }
 
-    public void setStudentId(Long studentId) {
-        this.studentId = studentId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -64,19 +64,19 @@ public class Student {
         if (o == null || getClass() != o.getClass()) return false;
         Student student = (Student) o;
         return Objects.equals(getAge(), student.getAge())
-                && Objects.equals(getStudentId(), student.getStudentId())
+                && Objects.equals(getId(), student.getId())
                 && Objects.equals(getName(), student.getName());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getStudentId(), getName(), getAge());
+        return Objects.hash(getId(), getName(), getAge());
     }
 
     @Override
     public String toString() {
         return "Student{" +
-                "id=" + studentId +
+                "id=" + id +
                 ", name='" + name + '\'' +
                 ", age=" + age +
                 '}';

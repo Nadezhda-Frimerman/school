@@ -9,16 +9,15 @@ import java.util.List;
 public interface FacultyService {
     Faculty addFaculty(Faculty faculty);
 
-    Faculty findFacultyById(Long facultyId);
+    Faculty findFacultyById(Long id);
 
-    void removeFacultyById(Long facultyId);
+    void removeFacultyById(Long id);
 
     Faculty editFaculty(Faculty faculty);
 
-    Faculty findFacultyByColor(String color);
 
     List<Faculty> findAllFaculties();
-    Faculty findFacultyByName (String name);
-    List<Student> findAllStudentsByFacultyId(Long facultyId);
+    Faculty findFaculty (Long id, String name, String color);
+    List<Student> findAllStudentsByid(Long id);
 
 }

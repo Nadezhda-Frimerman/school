@@ -9,15 +9,15 @@ import java.util.List;
 public interface StudentService {
     Student addStudent(Student student);
 
-    Student findStudentById(Long studentId);
+    Student findStudentById(Long id);
 
     Student editStudent(Student student);
 
-    void removeStudentById(Long studentId);
+    void removeStudentById(Long id);
 
     List<Student> findAllStudentsByAge(Integer age);
     List<Student> findStudentsByAgeBetween(Integer min, Integer max);
 
     List<Student> findAllStudents();
-    Faculty findFacultyByStudent(Long studentId);
+    Faculty findFacultyByStudent(Long id);
 }
