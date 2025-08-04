@@ -1,14 +1,12 @@
 package ru.hogwarts.school.service;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import ru.hogwarts.school.exception.ObjectNotFoundException;
 import ru.hogwarts.school.model.Faculty;
+import ru.hogwarts.school.model.Student;
 import ru.hogwarts.school.repository.FacultyRepository;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Service
 
@@ -32,17 +30,22 @@ public class FacultyServiceImpl implements FacultyService {
     }
 
     public Faculty editFaculty(Faculty faculty) {
-        facultyRepository.findById(faculty.getId()).orElseThrow(() -> new ObjectNotFoundException("Факультет с id " + faculty.getId() + " не найден"));
+        facultyRepository.findById(faculty.getFacultyId()).orElseThrow(() -> new ObjectNotFoundException("Факультет с id " + faculty.getFacultyId() + " не найден"));
         return facultyRepository.save(faculty);
     }
 
-    public List<Faculty> findAllFacultiesByColor(String color) {
-        return facultyRepository.findByColor(color);
+    public Faculty findFacultyByColor(String color) {
+        return facultyRepository.findByColorIgnoreCase(color);
     }
 
     public List<Faculty> findAllFaculties() {
         return facultyRepository.findAll();
     }
 
-
+    public Faculty findFacultyByName (String name){
+        return facultyRepository.findByNameIgnoreCase(name);
+    }
+    public List<Student> findAllStudentsByFacultyId(Long facultyId){
+        return facultyRepository.findAllStudentsByFacultyId(facultyId);
+    }
 }

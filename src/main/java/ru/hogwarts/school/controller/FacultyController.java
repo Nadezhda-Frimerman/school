@@ -2,7 +2,9 @@ package ru.hogwarts.school.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.hogwarts.school.exception.ObjectNotFoundException;
 import ru.hogwarts.school.model.Faculty;
+import ru.hogwarts.school.model.Student;
 import ru.hogwarts.school.service.FacultyService;
 
 import java.util.List;
@@ -16,14 +18,13 @@ public class FacultyController {
         this.facultyService = facultyService;
     }
 
-    @GetMapping("/{id}/find")
-    public Faculty findFacultyById(@RequestParam("id") Long facultyId) {
-        return facultyService.findFacultyById(facultyId);
+    @GetMapping("/findAll")
+    public List<Faculty> findAllFaculties() {
+                return facultyService.findAllFaculties();
     }
-
-    @GetMapping("/find/FacultiesByColor")
-    public List<Faculty> findAllFacultiesByColor(@RequestParam("color") String color) {
-        return facultyService.findAllFacultiesByColor(color);
+    @GetMapping("/{id}/findAllStudentsByFacultyId")
+    public List<Student> findAllStudentsByFacultyId(@PathVariable("id") Long facultyId){
+        return facultyService.findAllStudentsByFacultyId(facultyId);
     }
 
     @PostMapping("/add")
@@ -42,4 +43,18 @@ public class FacultyController {
         facultyService.removeFacultyById(facultyId);
         return ResponseEntity.ok().build();
     }
+    @GetMapping("/find")
+    public ResponseEntity findFaculty(@RequestParam("id") Long facultyId, @RequestParam("name") String name,@RequestParam("color") String color) {
+        if (facultyId!=null&&facultyId!=0L){
+            return ResponseEntity.ok(facultyService.findFacultyById(facultyId));
+        }
+        if (name!=null&&!name.isBlank()){
+            return ResponseEntity.ok(facultyService.findFacultyByName(name));
+        }
+        if (color!=null&&!color.isBlank()){
+            return ResponseEntity.ok(facultyService.findFacultyByColor(color));
+        }
+        throw new ObjectNotFoundException("Факультет не найден");
+    }
+
 }
