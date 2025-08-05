@@ -20,17 +20,17 @@ public class StudentServiceImpl implements StudentService {
         return studentRepository.save(student);
     }
 
-    public Student findStudentById(Long studentId) {
-        return studentRepository.findById(studentId).orElseThrow(() -> new ObjectNotFoundException("Факультет с id " + studentId + " не найден"));
+    public Student findStudentById(Long id) {
+        return studentRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Факультет с id " + id + " не найден"));
     }
 
     public Student editStudent(Student student) {
-        studentRepository.findById(student.getStudentId()).orElseThrow(() -> new ObjectNotFoundException("Факультет с id " + student.getStudentId() + " не найден"));
+        studentRepository.findById(student.getId()).orElseThrow(() -> new ObjectNotFoundException("Факультет с id " + student.getId() + " не найден"));
         return studentRepository.save(student);
     }
 
-    public void removeStudentById(Long studentId) {
-        studentRepository.deleteById(studentId);
+    public void removeStudentById(Long id) {
+        studentRepository.deleteById(id);
     }
 
     public List<Student> findAllStudentsByAge(Integer age) {
@@ -45,8 +45,8 @@ public class StudentServiceImpl implements StudentService {
         return studentRepository.findAll();
 
     }
-    public Faculty findFacultyByStudent(Long studentId){
-        return studentRepository.findById(studentId).get().getFaculty();
+    public Faculty findFacultyByStudent(Long id){
+        return studentRepository.findById(id).get().getFaculty();
     }
 
 }

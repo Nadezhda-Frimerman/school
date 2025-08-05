@@ -20,11 +20,12 @@ public class FacultyController {
 
     @GetMapping("/findAll")
     public List<Faculty> findAllFaculties() {
-                return facultyService.findAllFaculties();
+        return facultyService.findAllFaculties();
     }
-    @GetMapping("/{id}/findAllStudentsByFacultyId")
-    public List<Student> findAllStudentsByFacultyId(@PathVariable("id") Long facultyId){
-        return facultyService.findAllStudentsByFacultyId(facultyId);
+
+    @GetMapping("/{id}/findAllStudentsByid")
+    public List<Student> findAllStudentsByid(@PathVariable("id") Long id) {
+        return facultyService.findAllStudentsByid(id);
     }
 
     @PostMapping("/add")
@@ -39,22 +40,16 @@ public class FacultyController {
     }
 
     @DeleteMapping("/{id}/remove")
-    public ResponseEntity removeFacultyById(@PathVariable("id") Long facultyId) {
-        facultyService.removeFacultyById(facultyId);
+    public ResponseEntity removeFacultyById(@PathVariable("id") Long id) {
+        facultyService.removeFacultyById(id);
         return ResponseEntity.ok().build();
     }
+
     @GetMapping("/find")
-    public ResponseEntity findFaculty(@RequestParam("id") Long facultyId, @RequestParam("name") String name,@RequestParam("color") String color) {
-        if (facultyId!=null&&facultyId!=0L){
-            return ResponseEntity.ok(facultyService.findFacultyById(facultyId));
-        }
-        if (name!=null&&!name.isBlank()){
-            return ResponseEntity.ok(facultyService.findFacultyByName(name));
-        }
-        if (color!=null&&!color.isBlank()){
-            return ResponseEntity.ok(facultyService.findFacultyByColor(color));
-        }
-        throw new ObjectNotFoundException("Факультет не найден");
+    public ResponseEntity findFaculty(@RequestParam("id") Long id, @RequestParam("name") String name, @RequestParam("color") String color) {
+         return ResponseEntity.ok(facultyService.findFaculty(id, name, color));
+
+
     }
 
 }

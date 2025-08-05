@@ -10,7 +10,7 @@ import java.util.Objects;
 public class Faculty {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long facultyId;
+    private Long id;
     private String name;
     private String color;
 
@@ -21,12 +21,12 @@ public class Faculty {
     public Faculty() {
     }
 
-    public Long getFacultyId() {
-        return facultyId;
+    public Long getId() {
+        return id;
     }
 
-    public void setFacultyId(Long facultyId) {
-        this.facultyId = facultyId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -51,20 +51,20 @@ public class Faculty {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Faculty faculty = (Faculty) o;
-        return Objects.equals(getFacultyId(), faculty.getFacultyId())
+        return Objects.equals(getId(), faculty.getId())
                 && Objects.equals(getName(), faculty.getName())
                 && Objects.equals(getColor(), faculty.getColor());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getFacultyId(), getName(), getColor());
+        return Objects.hash(getId(), getName(), getColor());
     }
 
     @Override
     public String toString() {
         return "Faculty{" +
-                "id=" + facultyId +
+                "id=" + id +
                 ", name='" + name + '\'' +
                 ", color='" + color + '\'' +
                 '}';
