@@ -15,5 +15,5 @@ public interface FacultyRepository extends JpaRepository<Faculty, Long> {
     Faculty findByNameIgnoreCaseOrColorIgnoreCase(String name,String color);
    
     @Query(value="select*from student where student.faculty_id=:id", nativeQuery = true)
-    List<Student> findAllStudentsByid(Long id);
+    List<Student> findAllStudentsById(Long id);
 }

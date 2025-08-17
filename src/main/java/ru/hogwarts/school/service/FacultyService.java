@@ -18,6 +18,6 @@ public interface FacultyService {
 
     List<Faculty> findAllFaculties();
     Faculty findFaculty (Long id, String name, String color);
-    List<Student> findAllStudentsByid(Long id);
+    List<Student> findAllStudentsById(Long id);
 
 }

@@ -11,8 +11,8 @@ public class Avatar {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String filePath;
-    private Long fileSize;
-    private  String mediaTape;
+    private long fileSize;
+    private  String mediaType;
 
     @Lob
     private byte[] data;
@@ -20,11 +20,11 @@ public class Avatar {
     @JoinColumn (name = "student_id")
     private Student student;
 
-    public Avatar(Long id, String filePath, Long fileSize, String mediaTape, byte[] data, Student student) {
+    public Avatar(Long id, String filePath, long fileSize, String mediaType, byte[] data, Student student) {
         this.id = id;
         this.filePath = filePath;
         this.fileSize = fileSize;
-        this.mediaTape = mediaTape;
+        this.mediaType = mediaType;
         this.data = data;
         this.student = student;
     }
@@ -56,12 +56,12 @@ public class Avatar {
         this.fileSize = fileSize;
     }
 
-    public String getMediaTape() {
-        return mediaTape;
+    public String getMediaType() {
+        return mediaType;
     }
 
-    public void setMediaTape(String mediaTape) {
-        this.mediaTape = mediaTape;
+    public void setMediaType(String mediaType) {
+        this.mediaType = mediaType;
     }
 
     public byte[] getData() {
@@ -86,15 +86,15 @@ public class Avatar {
         if (!(o instanceof Avatar avatar)) return false;
         return Objects.equals(id, avatar.id)
                 && Objects.equals(filePath, avatar.filePath)
-                && Objects.equals(fileSize, avatar.fileSize)
-                && Objects.equals(mediaTape, avatar.mediaTape)
+                && (fileSize==avatar.fileSize)
+                && Objects.equals(mediaType, avatar.mediaType)
                 && Arrays.equals(data, avatar.data)
                 && Objects.equals(student, avatar.student);
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(id, filePath, fileSize, mediaTape);
+        int result = Objects.hash(id, filePath, fileSize, mediaType);
         result = 31 * result + Arrays.hashCode(data);
         return result;
     }
@@ -105,7 +105,7 @@ public class Avatar {
                 "id=" + id +
                 ", filePath='" + filePath + '\'' +
                 ", fileSize=" + fileSize +
-                ", mediaTape='" + mediaTape + '\'' +
+                ", mediaType='" + mediaType + '\'' +
                 ", data=" + Arrays.toString(data) +
                 ", student=" + student +
                 '}';

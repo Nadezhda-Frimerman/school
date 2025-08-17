@@ -51,7 +51,7 @@ public class FacultyServiceImpl implements FacultyService {
         throw new ObjectNotFoundException("Факультет не найден");
     }
 
-    public List<Student> findAllStudentsByid(Long id){
-        return facultyRepository.findAllStudentsByid(id);
+    public List<Student> findAllStudentsById(Long id){
+        return facultyRepository.findAllStudentsById(id);
     }
 }
