@@ -30,9 +30,9 @@ public class AvatarController {
         this.avatarService = avatarService;
     }
 
-    @PostMapping (value = "/{studentId}/avatar", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public Long uploadAvatar(@PathVariable Long studentId, @RequestParam MultipartFile avatar) throws IOException {
-        return avatarService.uploadAvatar(studentId, avatar);
+    @PostMapping (value = "/{studentId}/add", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public Long uploadAvatar(@PathVariable Long studentId, @RequestParam MultipartFile avatarFile) throws IOException {
+        return avatarService.uploadAvatar(studentId, avatarFile);
     }
     @Transactional
     @GetMapping(value = "/{studentId}/avatar-from-db")

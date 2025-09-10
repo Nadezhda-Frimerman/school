@@ -80,7 +80,7 @@ public class AvatarServiceImpl implements AvatarService {
     }
 
     public Avatar getAvatarById(Long studentId){
-        return avatarRepository.findByStudentId(studentId);
+        return avatarRepository.findByStudentId(studentId).orElse(new Avatar());
     }
 
     private String getExtensions(String fileName) {

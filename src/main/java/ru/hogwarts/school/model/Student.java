@@ -15,6 +15,8 @@ public class Student {
     @ManyToOne
     @JoinColumn(name="faculty_id")
     private Faculty faculty;
+    @OneToOne (mappedBy = "student", fetch = FetchType.LAZY)
+    private Avatar avatar;
 
 
     public Faculty getFaculty() {
