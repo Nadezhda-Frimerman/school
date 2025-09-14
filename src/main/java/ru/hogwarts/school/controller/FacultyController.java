@@ -23,9 +23,9 @@ public class FacultyController {
         return facultyService.findAllFaculties();
     }
 
-    @GetMapping("/{id}/findAllStudentsByid")
-    public List<Student> findAllStudentsByid(@PathVariable("id") Long id) {
-        return facultyService.findAllStudentsByid(id);
+    @GetMapping("/{id}/findAllStudentsById")
+    public List<Student> findAllStudentsById(@PathVariable("id") Long id) {
+        return facultyService.findAllStudentsById(id);
     }
 
     @PostMapping("/add")
