@@ -36,7 +36,7 @@ public class StudentController {
     public ResponseEntity<List<Student>> findStudentsByAgeBetween(@RequestParam("min") Integer min,@RequestParam("max") Integer max) {
         return ResponseEntity.ok(studentService.findStudentsByAgeBetween(min,max));
     }
-    @GetMapping("/{id}/findFacultyBy Student")
+    @GetMapping("/{id}/findFacultyByStudent")
     public ResponseEntity <Faculty> findFacultyByStudent(@RequestParam("id") Long id){
         return ResponseEntity.ok(studentService.findFacultyByStudent(id));
     }
@@ -46,7 +46,7 @@ public class StudentController {
         return ResponseEntity.ok(studentService.addStudent(student));
     }
 
-    @PutMapping("/{id}/update")
+    @PutMapping("/update")
     public ResponseEntity<Student> updateStudent(@RequestBody Student student) {
         return ResponseEntity.ok(studentService.editStudent(student));
     }
