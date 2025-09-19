@@ -18,6 +18,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.List;
 
 
 @RestController
@@ -34,7 +35,6 @@ public class AvatarController {
     public Long uploadAvatar(@PathVariable Long studentId, @RequestParam MultipartFile avatarFile) throws IOException {
         return avatarService.uploadAvatar(studentId, avatarFile);
     }
-    @Transactional
     @GetMapping(value = "/{studentId}/avatar-from-db")
     public ResponseEntity<byte[]> downloadAvatar(@PathVariable Long studentId) {
         Avatar avatar;
@@ -61,7 +61,11 @@ public class AvatarController {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-
     }
+    @GetMapping (value = "allAvatars")
+    public List<Avatar> getAlAvatars (@RequestParam int pageNumber, @RequestParam int pageSize){
+        List <Avatar> allAvatars =avatarService.getAllAvatars(pageNumber,pageSize);
+        return ResponseEntity.ok(allAvatars).getBody();
+    }
+
 }

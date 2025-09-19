@@ -37,7 +37,7 @@ public class StudentServiceImpl implements StudentService {
         return studentRepository.findByAge(age);
     }
 
-    public List<Student> findStudentsByAgeBetween(Integer min, Integer max){
+    public List<Student> findStudentsByAgeBetween(Integer min, Integer max) {
         return studentRepository.findByAgeBetween(min, max);
     }
 
@@ -45,8 +45,21 @@ public class StudentServiceImpl implements StudentService {
         return studentRepository.findAll();
 
     }
-    public Faculty findFacultyByStudent(Long id){
+
+    public Faculty findFacultyByStudent(Long id) {
         return studentRepository.findById(id).get().getFaculty();
+    }
+
+    public int getStudentAmount() {
+        return studentRepository.getStudentAmount();
+    }
+
+    public int getAverageAge() {
+        return studentRepository.getAverageAge();
+    }
+
+    public List<Student> getLastFive() {
+        return studentRepository.getLastFive();
     }
 
 }
