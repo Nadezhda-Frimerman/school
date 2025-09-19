@@ -32,12 +32,14 @@ public class StudentController {
     public ResponseEntity<List<Student>> findAllStudentsByAge(@RequestParam("age") Integer age) {
         return ResponseEntity.ok(studentService.findAllStudentsByAge(age));
     }
+
     @GetMapping("/find/allByAgeBetween")
-    public ResponseEntity<List<Student>> findStudentsByAgeBetween(@RequestParam("min") Integer min,@RequestParam("max") Integer max) {
-        return ResponseEntity.ok(studentService.findStudentsByAgeBetween(min,max));
+    public ResponseEntity<List<Student>> findStudentsByAgeBetween(@RequestParam("min") Integer min, @RequestParam("max") Integer max) {
+        return ResponseEntity.ok(studentService.findStudentsByAgeBetween(min, max));
     }
+
     @GetMapping("/{id}/findFacultyByStudent")
-    public ResponseEntity <Faculty> findFacultyByStudent(@RequestParam("id") Long id){
+    public ResponseEntity<Faculty> findFacultyByStudent(@RequestParam("id") Long id) {
         return ResponseEntity.ok(studentService.findFacultyByStudent(id));
     }
 
@@ -57,4 +59,18 @@ public class StudentController {
         return ResponseEntity.ok().build();
     }
 
+    @GetMapping("/amount")
+    public int getStudentAmount() {
+        return studentService.getStudentAmount();
+    }
+
+    @GetMapping("/averageAge")
+    public int getAverageAge() {
+        return studentService.getAverageAge();
+    }
+
+    @GetMapping("/lastFive")
+    public List<Student> getLastFive() {
+        return studentService.getLastFive();
+    }
 }
