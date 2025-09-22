@@ -7,6 +7,7 @@ import ru.hogwarts.school.model.Avatar;
 import ru.hogwarts.school.repository.AvatarRepository;
 
 import java.io.IOException;
+import java.util.List;
 
 @Service
 public interface AvatarService {
@@ -14,6 +15,6 @@ public interface AvatarService {
     Long uploadAvatar(Long studentId, MultipartFile avatarFile) throws IOException;
 
     Avatar getAvatarById(Long studentId);
-//    Avatar getAvatarById(Long id);
-//    Avatar getAvatarById(Long studentId,Long avatarId);
+    List<Avatar> getAllAvatars (int pageNumber, int pageSize);
+
 }
