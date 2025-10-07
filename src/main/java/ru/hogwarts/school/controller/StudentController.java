@@ -81,5 +81,12 @@ public class StudentController {
     public List<String> getAllStudentsByFirstLetterOfName(){
         return studentService.getAllStudentsByFirstLetterOfName();
     }
-
+    @GetMapping("/print-parallel")
+    public void getAllStudentsNamesParallel (){
+        studentService.getAllStudentsNamesParallel();
+    }
+    @GetMapping("/print-synchronized")
+    public void getAllStudentsNamesSynchronized (){
+        studentService.getAllStudentsNamesSynchronized();
+    }
 }
