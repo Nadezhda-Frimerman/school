@@ -159,4 +159,18 @@ public class StudentControllerTest {
                 HttpMethod.DELETE,
                 HttpEntity.EMPTY, void.class).getStatusCode().equals(200));
     }
+    @Test
+    void getAllStudentsNamesParallel() throws Exception{
+        Assertions.assertThat(this.testRestTemplate.exchange(
+                "http://localhost:" + port + "/print-parallel",
+                HttpMethod.GET,
+                HttpEntity.EMPTY, void.class).getStatusCode().equals(200));
+    }
+    @Test
+    void getAllStudentsNamesSynchronized() throws Exception{
+        Assertions.assertThat(this.testRestTemplate.exchange(
+                "http://localhost:" + port + "/print-synchronized",
+                HttpMethod.GET,
+                HttpEntity.EMPTY, void.class).getStatusCode().equals(200));
+    }
 }

@@ -89,6 +89,41 @@ public class StudentServiceImpl implements StudentService {
         return studentRepository.findAll().
                 stream().mapToDouble(Student:: getAge).average().orElseThrow();
     }
+    public void getAllStudentsNamesParallel(){
+        List<Student> students=studentRepository.findAll();
+        System.out.println(students.get(0).getName());
+        System.out.println(students.get(1).getName());
+
+        new Thread(()->{
+            System.out.println(students.get(2).getName());
+            System.out.println(students.get(3).getName());
+        }).start();
+
+        new Thread(()->{
+            System.out.println(students.get(4).getName());
+            System.out.println(students.get(5).getName());
+        }).start();
+    }
+    private final Object flag = new Object();
+    public void getAllStudentsNamesSynchronized(){
+        List<Student> students=studentRepository.findAll();
+        System.out.println(students.get(0).getName());
+        System.out.println(students.get(1).getName());
+
+        Thread t1 = new Thread (()->{
+            synchronized (flag){
+            System.out.println(students.get(2).getName());
+            System.out.println(students.get(3).getName());}
+        });
+
+        Thread t2 = new Thread(()->{
+            synchronized (flag){
+            System.out.println(students.get(4).getName());
+            System.out.println(students.get(5).getName());}
+        });
+        t1.start();
+        t2.start();
+    }
 }
 
 
