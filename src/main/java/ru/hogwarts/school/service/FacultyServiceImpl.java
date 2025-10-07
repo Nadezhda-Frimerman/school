@@ -2,15 +2,17 @@ package ru.hogwarts.school.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import ru.hogwarts.school.exception.ObjectNotFoundException;
 import ru.hogwarts.school.model.Faculty;
 import ru.hogwarts.school.model.Student;
 import ru.hogwarts.school.repository.FacultyRepository;
 
-import javax.swing.text.StringContent;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.LongStream;
+import java.util.stream.Stream;
 
 @Service
 
@@ -63,5 +65,12 @@ public class FacultyServiceImpl implements FacultyService {
     public List<Student> findAllStudentsById(Long id){
         logger.info("Was invoked method for find all students by faculty id");
         return facultyRepository.findAllStudentsById(id);
+    }
+    public Optional<Faculty> maxLogNameFaculty(){
+        return facultyRepository.findAll().stream().max(Comparator.comparingInt(faculty -> faculty.getName().length()));
+    }
+    public long count(){
+        long sum = LongStream.rangeClosed(1, 1_000_000).sum();
+        return sum;
     }
 }

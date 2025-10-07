@@ -8,6 +8,7 @@ import ru.hogwarts.school.model.Student;
 import ru.hogwarts.school.service.FacultyService;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/faculty")
@@ -51,5 +52,12 @@ public class FacultyController {
 
 
     }
-
+    @GetMapping("/maxLongName")
+    public Optional<Faculty> maxLogNameFaculty(){
+        return facultyService.maxLogNameFaculty();
+    }
+    @GetMapping("/count")
+    public Long count(){
+        return facultyService.count();
+    }
 }
